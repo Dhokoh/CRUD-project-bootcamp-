@@ -4,29 +4,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD componentes</title>
+    <link rel="stylesheet" href="./CRUDstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <title>Popular Electronics admin portal</title>
 </head>
 <body>
+    <div class="background_container">
+        <div class="red_area"></div>
+        <div class="white_area"></div>
+    </div>
     <div class="CRUDtable">
-        <h1>CRUD components</h1>
+        <h1>Popular Electronics Admin Portal</h1>
         <form>
-            <label for="nameComponent">
-                Nombre
-            </label>
-            <input type="text" id="nameComponent">
-            <label for="refComponent">
+            <label class="input_label" for="nameComponent">
                 Referencia
             </label>
+            <input class="ref_inputbox" type="text" id="nameComponent">
+            <label class="input_label" for="refComponent">
+                Descripción
+            </label>
             <input type="text" id="refComponent">
-            <label for="price">
+            <label class="input_label" for="price">
                 Precio
             </label>
-            <input type="text">
-            <label for="smd">
-                SMD
+            <input class="ref_inputbox" type="text">
+            <label class="input_label" for="smd">
+                <span class="red_letters">SMD</span> 
             </label>
             <input type="checkbox">
+            <button class="add_button">Agregar</button>
         </form>
+    </div>
+    <div class="table_container">
+        <table>
+            <thead class="table_head">
+                <tr>
+                    <th class="table_th">
+                        Referencia
+                    </th>
+                    <th class="table_th">
+                        Descripción
+                    </th>
+                    <th class="table_th">
+                        Precio
+                    </th>
+                    <th class="table_th">
+                        SMD
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        LM555
+                    </td>
+                    <td>
+                        Circuito integrado 3v
+                    </td>
+                    <td>
+                        $500
+                    </td>
+                    <td>
+                        Sí
+                    </td>
+                    <td>
+                        <button>editar</button> 
+                        <button>eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        Triac
+                    </td>
+                    <td>
+                        IGBT34589
+                    </td>
+                    <td>
+                        2500
+                    </td>
+                    <td>
+                        Si
+                    </td>
+                    <td>
+                        <button>editar</button>
+                        <button>eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
