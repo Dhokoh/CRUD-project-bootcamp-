@@ -11,10 +11,11 @@
 <body>
     <div class="background_container">
         <div class="red_area"></div>
-        <div class="white_area"></div>
     </div>
     <div class="CRUDtable">
         <h1>Popular Electronics Admin Portal</h1>
+    </div>
+    <div class="form_container">
         <form>
             <label class="input_label" for="nameComponent">
                 Referencia
@@ -29,16 +30,19 @@
             </label>
             <input class="ref_inputbox" type="text">
             <label class="input_label" for="smd">
-                <span class="red_letters">SMD</span> 
+                SMD 
             </label>
             <input type="checkbox">
             <button class="add_button">Agregar</button>
         </form>
     </div>
     <div class="table_container">
-        <table>
+        <table border="1">
             <thead class="table_head">
                 <tr>
+                    <th class="table_th">
+                        #
+                    </th>
                     <th class="table_th">
                         Referencia
                     </th>
@@ -51,10 +55,16 @@
                     <th class="table_th">
                         SMD
                     </th>
+                    <th class="table_th">
+                        Acciones
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table_body">
                 <tr>
+                    <td>
+                        1
+                    </td>
                     <td>
                         LM555
                     </td>
@@ -68,8 +78,8 @@
                         Sí
                     </td>
                     <td>
-                        <button>editar</button> 
-                        <button>eliminar</button>
+                        <button class="action_but_edit">editar</button> 
+                        <button class="action_but_delete">eliminar</button>
                     </td>
                 </tr>
                 <tr>
@@ -83,14 +93,14 @@
                         IGBT34589
                     </td>
                     <td>
-                        2500
+                        $2500
                     </td>
                     <td>
                         Si
                     </td>
                     <td>
-                        <button>editar</button>
-                        <button>eliminar</button>
+                        <button class="action_but_edit">editar</button>
+                        <button class="action_but_delete">eliminar</button>
                     </td>
                 </tr>
             </tbody>
