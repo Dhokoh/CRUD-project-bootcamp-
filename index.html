@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CRUDstyle.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <script type="text/javascript" src="./index.js"></script>
     <title>Popular Electronics admin portal</title>
 </head>
+
 <body>
     <div class="background_container">
         <div class="red_area"></div>
     </div>
     <div class="CRUDtable">
         <h1>Popular Electronics
-            <span class="subtitle">Admin portal</span> 
+            <span class="subtitle">Admin portal</span>
         </h1>
     </div>
     <div class="form_container">
-        <form>
-            <label class="input_label" for="refComponent">
-                Referencia
-            </label>
-            <input class="ref_inputbox" type="text" id="refComponent">
-            <label class="input_label" for="descComponent">
-                Descripción
-            </label>
-            <input type="text" id="descComponent">
-            <label class="input_label" for="price">
-                Precio
-            </label>
-            <input class="ref_inputbox" type="text" id="price">
-            <label class="input_label" for="smd">
-                SMD 
-            </label>
-            <input type="checkbox" id = "smd">
-            <button id="add_button" class="add_button">Agregar</button>
+
+        <label class="input_label" for="refComponent">
+            Referencia
+        </label>
+        <input class="ref_inputbox" type="text" id="refComponent">
+        <label class="input_label" for="descComponent">
+            Descripción
+        </label>
+        <input type="text" id="descComponent">
+        <label class="input_label" for="price">
+            Precio
+        </label>
+        <input class="ref_inputbox" type="text" id="price">
+        <label class="input_label" for="smd">
+            SMD
+        </label>
+        <input type="checkbox" id="smd">
+        <button id="add_button" class="add_button">Agregar</button>
         </form>
     </div>
     <div class="table_container">
-        <table border="1">
+        <table>
             <thead class="table_head">
                 <tr>
                     <th class="table_th">
@@ -81,7 +82,7 @@
                         Sí
                     </td>
                     <td>
-                        <button class="action_but_edit">editar</button> 
+                        <button class="action_but_edit">editar</button>
                         <button class="action_but_delete">eliminar</button>
                     </td>
                 </tr>
@@ -109,5 +110,7 @@
             </tbody>
         </table>
     </div>
+    <script type="text/javascript" src="./index.js"></script>
 </body>
+
 </html>
