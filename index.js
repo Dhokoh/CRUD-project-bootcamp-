@@ -6,52 +6,86 @@ let input_pricecomponent = document.getElementById("price");
 let add_button = document.getElementById("add_button");
 let hasSMD = document.getElementById("smd");
 
-// Definiendo variables para almacenar input o datos de entrada
-
-let ref = ''
-let desc = ''
-let price = ''
-
 // Definiendo el objeto del producto (referencia, descripcion, precio y SMD)
 
 let producto = {
     referencia: "",
     descripcion: "",
     precio: "",
-    superficie: ""
+    superficie: false
 }
+
+// class producto {
+//     referencia = '';
+//     descripcion = '';
+//     precio = '';
+//     superficie = false;
+// }
 
 // Definiendo la lista que almacenara los componentes/productos
 let product_list = []
+let localstorage_list = localStorage.getItem('lista_productos')
 
 // Definiendo los eventos para los campos de referencia, descripcion y precio
-input_refcomponent.addEventListener('change', function(){
-    ref = input_refcomponent.value;
+input_refcomponent.addEventListener('change', () => {
+    producto.referencia = input_refcomponent.value;
 })
 
-input_componentdesc.addEventListener('change', function(){
-    desc = input_componentdesc.value
+input_componentdesc.addEventListener('change', () => {
+    producto.descripcion = input_componentdesc.value
 })
 
-input_pricecomponent.addEventListener('change', function(){
-    price = input_pricecomponent.value
+input_pricecomponent.addEventListener('change', () => {
+    producto.precio = input_pricecomponent.value
 })
 
-hasSMD.addEventListener('change', function(){
-    superficie = hasSMD.checked
+hasSMD.addEventListener('change', () => {
+    producto.superficie = hasSMD.checked
 })
 
 // Definiendo evento de guardado para el boton de agregado
-add_button.addEventListener('click', function(){
-    producto.referencia = ref;
-    producto.descripcion = desc;
-    producto.precio = price;
-    producto.superficie = superficie;
+add_button.addEventListener('click', () => {
+    console.log(product_list);
     product_list.push(producto);
-    console.log(product_list)
-    localStorage.setItem('lista_productos', JSON.stringify('product_list'))
+    input_componentdesc.value = '';
+    input_pricecomponent.value = '';
+    input_refcomponent.value = '';
+    hasSMD.checked = false;
+    producto = {};
+    localstorage_list = product_list;
+    localStorage.setItem('lista_productos', JSON.stringify(localstorage_list));
+    show_list();
 })
-console.log(product_list)
 
-console.log('add_button');
-console.log(add_button);
+// Agregando rendering de elementos en tabla
+const show_list = () => {
+    let tbody = document.getElementsByTagName('tbody')[0];
+    let lista = JSON.parse(localStorage.getItem('lista_productos'));
+    tbody.innerHTML = ''
+    if (lista != null){
+        lista.forEach((element, ind) => {
+            let row = document.createElement('tr');
+            row.innerHTML = `
+            <td> ${ind + 1} </td>
+            <td> ${element['referencia']} </td>
+            <td> ${element['descripcion']}</td>
+            <td> ${'$' + element['precio']}</td>
+            <td> ${element['superficie']?'Activo':'Inactivo'}</td>
+            <td> <button class='action_but_edit' onclick='edit_action(${ind})'> Editar </button> 
+            <button class='action_but_delete' onclick='delete_action(${ind})'> Eliminar </button> </td>
+            `;
+            row.style.textAlign = 'center';
+            tbody.appendChild(row);
+        })
+    }
+}
+
+// Definiendo operaciones de eliminacion y edicion
+const edit_action = (index) => { 
+    console.log("Edit" + index)
+}
+
+const delete_action = (index) => {
+    console.log("Delete" + index)
+}
+
