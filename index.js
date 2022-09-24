@@ -3,8 +3,8 @@
 let input_refcomponent = document.getElementById("refComponent");
 let input_componentdesc = document.getElementById("descComponent");
 let input_pricecomponent = document.getElementById("price");
-let add_button = document.getElementById("add_button");
 let hasSMD = document.getElementById("smd");
+let add_button = document.getElementById("add_button");
 
 // Definiendo el objeto del producto (referencia, descripcion, precio y SMD)
 
@@ -14,17 +14,6 @@ let producto = {
     precio: "",
     superficie: false
 }
-
-// class producto {
-//     referencia = '';
-//     descripcion = '';
-//     precio = '';
-//     superficie = false;
-// }
-
-// Definiendo la lista que almacenara los componentes/productos
-let product_list = []
-let localstorage_list = localStorage.getItem('lista_productos')
 
 // Definiendo los eventos para los campos de referencia, descripcion y precio
 input_refcomponent.addEventListener('change', () => {
@@ -44,18 +33,18 @@ hasSMD.addEventListener('change', () => {
 })
 
 // Definiendo evento de guardado para el boton de agregado
-add_button.addEventListener('click', () => {
-    console.log(product_list);
-    product_list.push(producto);
+const agregar_elemento = () => {
+    let localstorage_list = JSON.parse(localStorage.getItem('lista_productos'));
+    localstorage_list.push(producto);
     input_componentdesc.value = '';
     input_pricecomponent.value = '';
     input_refcomponent.value = '';
+    document.getElementById('index').value = '';
     hasSMD.checked = false;
     producto = {};
-    localstorage_list = product_list;
     localStorage.setItem('lista_productos', JSON.stringify(localstorage_list));
     show_list();
-})
+    }
 
 // Agregando rendering de elementos en tabla
 const show_list = () => {
@@ -71,7 +60,7 @@ const show_list = () => {
             <td> ${element['descripcion']}</td>
             <td> ${'$' + element['precio']}</td>
             <td> ${element['superficie']?'Activo':'Inactivo'}</td>
-            <td> <button class='action_but_edit' onclick='edit_action(${ind})'> Editar </button> 
+            <td> <button class='action_but_edit' onclick='rellenar_input(${ind})'> Editar </button> 
             <button class='action_but_delete' onclick='delete_action(${ind})'> Eliminar </button> </td>
             `;
             row.style.textAlign = 'center';
@@ -81,11 +70,58 @@ const show_list = () => {
 }
 
 // Definiendo operaciones de eliminacion y edicion
-const edit_action = (index) => { 
-    console.log("Edit" + index)
+const rellenar_input = (index) => { 
+    //debugger
+    console.log("Edit" + index);
+    localstorage_list = JSON.parse(localStorage.getItem('lista_productos'));
+    input_refcomponent.value = localstorage_list[index]['referencia'];
+    input_componentdesc.value = localstorage_list[index]['descripcion'];
+    input_pricecomponent.value = localstorage_list[index]['precio'];
+    hasSMD.checked = localstorage_list[index]['superficie'];
+    document.getElementById('index').value = index;
+    let element_edit = document.getElementsByTagName('td');
+    document.getElementById('add_button').innerHTML = 'Actualizar';
+}
+
+const editar_elemento = () => {
+    let indice = parseInt(document.getElementById('index').value);
+    localstorage_list = JSON.parse(localStorage.getItem('lista_productos'))
+    localstorage_list.forEach((elem, i) => {
+        if (i === indice){
+            elem.referencia = input_refcomponent.value;
+            elem.descripcion = input_componentdesc.value;
+            elem.precio = input_pricecomponent.value;
+            elem.superficie = hasSMD.checked;
+        }
+    });
+    input_refcomponent.value = '';
+    input_componentdesc.value = '';
+    input_pricecomponent.value = '';
+    hasSMD.checked = false;
+    document.getElementById('index').value = '';
+    document.getElementById('add_button').innerHTML = 'Agregar';
+    localStorage.setItem('lista_productos', JSON.stringify(localstorage_list));
+    show_list();
+}
+
+const update_item = () => {
+    if (document.getElementById('index').value === ''){
+        console.log('insertar nuevo elemento');
+        document.getElementById('add_button').innerHTML = 'Agregar';
+        agregar_elemento();
+    }else{
+        console.log('actualizar elemento');
+        document.getElementById('add_button').innerHTML = 'Editar';
+        editar_elemento();
+    }
+    
 }
 
 const delete_action = (index) => {
-    console.log("Delete" + index)
+    let localstorage_list = JSON.parse(localStorage.getItem('lista_productos'));
+    localstorage_list = localstorage_list.filter((elem, ind) => ind !== index);
+    localStorage.setItem('lista_productos', JSON.stringify(localstorage_list));
+    show_list();
 }
 
+show_list();

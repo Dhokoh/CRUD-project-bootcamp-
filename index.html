@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/Arduino y accesorios.jpg">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,7 @@
             Referencia
         </label>
         <input type="text" id="refComponent">
+        <input id="index" type="hidden">
         <label class="input_label" for="descComponent">
             Descripción
         </label>
@@ -37,7 +39,7 @@
             SMD
         </label>
         <input type="checkbox" id="smd">
-        <button id="add_button" class="add_button">Agregar</button>
+        <button id="add_button" onclick="update_item()" class="add_button">Agregar</button>
         </form>
     </div>
     <div class="table_container">
