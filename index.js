@@ -69,10 +69,8 @@ const show_list = () => {
     }
 }
 
-// Definiendo operaciones de eliminacion y edicion
+// Función para rellenar los inputs y permitir edición
 const rellenar_input = (index) => { 
-    //debugger
-    console.log("Edit" + index);
     localstorage_list = JSON.parse(localStorage.getItem('lista_productos'));
     input_refcomponent.value = localstorage_list[index]['referencia'];
     input_componentdesc.value = localstorage_list[index]['descripcion'];
@@ -83,6 +81,7 @@ const rellenar_input = (index) => {
     document.getElementById('add_button').innerHTML = 'Actualizar';
 }
 
+// Función para editar elementos en tabla
 const editar_elemento = () => {
     let indice = parseInt(document.getElementById('index').value);
     localstorage_list = JSON.parse(localStorage.getItem('lista_productos'))
@@ -104,9 +103,9 @@ const editar_elemento = () => {
     show_list();
 }
 
+// Función para actualizar los elementos una vez editados
 const update_item = () => {
     if (document.getElementById('index').value === ''){
-        console.log('insertar nuevo elemento');
         document.getElementById('add_button').innerHTML = 'Agregar';
         agregar_elemento();
     }else{
@@ -117,6 +116,7 @@ const update_item = () => {
     
 }
 
+// Función para eliminar elementos
 const delete_action = (index) => {
     let localstorage_list = JSON.parse(localStorage.getItem('lista_productos'));
     localstorage_list = localstorage_list.filter((elem, ind) => ind !== index);
