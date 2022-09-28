@@ -109,7 +109,6 @@ const update_item = () => {
         document.getElementById('add_button').innerHTML = 'Agregar';
         agregar_elemento();
     }else{
-        console.log('actualizar elemento');
         document.getElementById('add_button').innerHTML = 'Editar';
         editar_elemento();
     }
